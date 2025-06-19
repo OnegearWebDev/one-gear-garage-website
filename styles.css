@@ -960,3 +960,80 @@ footer .cta:focus {
         transform: none; /* Reset transform */
     }
 }
+/* --- Styling for Form Input Fields (General Inquiry and Scheduling) --- */
+
+/* Base styling for all common text-based inputs and textareas */
+.contact-section form input[type="text"],
+.contact-section form input[type="email"],
+.contact-section form input[type="tel"],
+.contact-section form textarea,
+/* Also apply to scheduling selects, if they're not already styled */
+.schedule-section select,
+.schedule-section input[type="text"] { /* for date-picker */
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle light border */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+    color: #f0f0f0; /* Light text color */
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding and border are included in element's total width */
+    font-family: 'Inter', sans-serif; /* Consistent font */
+    font-size: 1rem;
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    -webkit-appearance: none; /* Removes default styling for selects on some browsers */
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Styling for dropdown arrows in selects */
+.schedule-section select {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23f0f0f0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 35px; /* Make space for the custom arrow */
+}
+
+
+/* Specific styling for focus state (when a user clicks on an input) */
+.contact-section form input[type="text"]:focus,
+.contact-section form input[type="email"]:focus,
+.contact-section form input[type="tel"]:focus,
+.contact-section form textarea:focus,
+.schedule-section select:focus,
+.schedule-section input[type="text"]:focus {
+    border-color: #ffd700; /* Gold/yellow border on focus */
+    background-color: rgba(0, 0, 0, 0.7); /* Slightly darker on focus */
+    outline: none; /* Remove default browser outline */
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.4); /* Subtle glow */
+}
+
+/* Styling for placeholder text */
+.contact-section form input::placeholder,
+.contact-section form textarea::placeholder,
+.schedule-section input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Specific styling for readonly inputs (like Booking Details) */
+.contact-section form input[readonly] {
+    opacity: 0.8;
+    cursor: default; /* Indicate it's not editable */
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly different background for readonly */
+}
+
+/* Ensure labels have good visibility and spacing */
+.contact-section form label,
+.schedule-section label {
+    color: #e0e0e0; /* Light color for labels */
+    margin-bottom: 5px;
+    display: block; /* Make labels block-level for spacing */
+    font-weight: 600;
+}
+
+/* Style for option elements in the select dropdown */
+.schedule-section select option {
+    background-color: #333; /* Dark background for dropdown options */
+    color: #f0f0f0; /* Light text for dropdown options */
+}

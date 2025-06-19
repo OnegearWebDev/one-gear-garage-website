@@ -15,13 +15,11 @@
     
     <link rel="stylesheet" href="styles.css"> 
     
-    </head>
+</head>
 <body>
     <img id="bgImg" src="images/milky-way.jpg" alt="Milky Way Background" aria-hidden="true">
 
     <div class="overlay"></div>
-
-    <div id="particles-js"></div>
 
     <header class="navbar">
         <div class="nav-top-row">
@@ -41,50 +39,61 @@
 
     <main>
         <section id="schedule-contact" class="section" data-aos="fade-up">
-            <h2>Schedule a Service or Send a Message</h2>
-            <p class="section-intro">Use the form below to book your ritual or send a general inquiry.</p>
-
             <div class="schedule-contact-container">
-                <div class="contact-section full-width-form"> <h3>Book Your Ritual / General Inquiry</h3>
-                    <form id="contact-form"> <label for="service-select">Choose Service:</label>
-                        <select id="service-select" name="service_type" required>
-                            <option value="">-- Select a Service --</option>
-                            <option value="Basic Bike Wash">Basic Bike Wash ($25)</option>
-                            <option value="Deep Clean">Deep Clean ($35)</option>
-                            <option value="Chain & Lube">Chain & Lube ($10)</option>
-                            <option value="Brake Tuning">Brake Tuning ($15)</option>
-                            <option value="Flat Repair">Flat Repair ($7)</option>
-                            <option value="Complete Tune-Up">Complete Tune-Up ($50)</option>
-                        </select>
+                <div class="schedule-section">
+                    <h3>Book Your Ritual</h3>
+                    <p>Select your desired date and available time slot.</p>
+                    
+                    <label for="service-select">Choose Service:</label>
+                    <select id="service-select" required>
+                        <option value="">-- Select a Service --</option>
+                        <option value="Basic Bike Wash">Basic Bike Wash ($25)</option>
+                        <option value="Deep Clean">Deep Clean ($35)</option>
+                        <option value="Chain & Lube">Chain & Lube ($10)</option>
+                        <option value="Brake Tuning">Brake Tuning ($15)</option>
+                        <option value="Flat Repair">Flat Repair ($7)</option>
+                        <option value="Complete Tune-Up">Complete Tune-Up ($50)</option>
+                    </select>
 
-                        <label for="date-picker">Select Date:</label>
-                        <input type="text" id="date-picker" name="appointment_date" placeholder="Click to select a date" readonly required>
+                    <label for="date-picker">Select Date:</label>
+                    <input type="text" id="date-picker" placeholder="Click to select a date" readonly required>
 
-                        <label for="time-slot-select">Select Time Slot:</label>
-                        <select id="time-slot-select" name="appointment_time" required>
-                            <option value="">-- Select a Time --</option>
-                        </select>
+                    <label for="time-slot-select">Select Time Slot:</label>
+                    <select id="time-slot-select" required>
+                        <option value="">-- Select a Time --</option>
+                    </select>
 
-                        <p class="booking-message">Please fill in your contact details below to confirm your booking or for general inquiries.</p>
+                    <p class="booking-message">Your selected date and time will pre-fill the contact form below.</p>
+                    
+                    <button id="scheduleAppointmentButton" class="cta">Schedule Appointment</button>
+                    <div id="responseMessage" style="margin-top: 15px; font-weight: bold;"></div>
+                </div>
+
+                <div class="contact-section">
+                    <h3>General Inquiry / Confirm Booking Details</h3>
+                    <form name="general-contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+                        <input type="hidden" name="form-name" value="general-contact" />
+                        <p hidden>
+                          <label>Don’t fill this out: <input name="bot-field" /></label>
+                        </p>
 
                         <label for="user_name">Name:</label>
-                        <input type="text" id="user_name" name="customer_name" required>
+                        <input type="text" id="user_name" name="name" required>
 
                         <label for="user_email">Email:</label>
-                        <input type="email" id="user_email" name="customer_email" required>
+                        <input type="email" id="user_email" name="email" required>
 
                         <label for="user_phone">Phone (Optional):</label>
-                        <input type="tel" id="user_phone" name="user_phone">
+                        <input type="tel" id="user_phone" name="phone">
 
                         <label for="booking_details">Booking Details (Auto-filled):</label>
                         <input type="text" id="booking_details" name="booking_details" readonly>
 
-                        <label for="message">Your Message / Additional Notes:</label>
-                        <textarea id="message" name="message_notes" rows="5" required></textarea>
+                        <label for="message">Your Message:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
 
-                        <button type="submit" class="cta">Send Message / Confirm Booking</button>
-                        <p id="form-status" class="form-status"></p>
-                        <div id="responseMessage" style="margin-top: 20px; font-weight: bold;"></div> </form>
+                        <button type="submit" class="cta">Send General Inquiry</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -96,10 +105,8 @@
         <p>&copy; 2025 One Gear Garage. All Chains Bound.</p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="script.js"></script> 
-
-    </body>
+</body>
 </html>
