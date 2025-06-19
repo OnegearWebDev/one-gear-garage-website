@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>One Gear Garage</title>
+
+    <meta name="description" content="Experience the ritual of a perfectly tuned BMX bike. One Gear Garage delivers expert tune-ups, deep cleans, and repairs. Reawaken your beast.">
+    <link rel="canonical" href="https://onegeargarage.xyz/">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=UnifrakturCook&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> 
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/v4/email.min.js" defer></script> 
+</head>
+<body>
+
+    <picture>
+        <source srcset="images/milky-way.webp" type="image/webp">
+        <img src="images/milky-way.jpg" id="bgImg" alt="Milky Way Background" aria-hidden="true">
+    </picture>
+    <div class="overlay"></div>
+
+    <header class="navbar">
+        <div class="nav-top-row">
+            <a href="#hero" class="logo" id="logo-toggle" aria-haspopup="true" aria-expanded="false">
+            <picture>
+                <source srcset="images/logo.webp" type="image/webp">
+                <img src="images/logo.png" alt="One Gear Garage Logo" class="logo-icon">
+            </picture>
+                <span class="logo-text">One Gear Garage</span>
+            </a>
+        </div> 
+        <nav id="nav-menu">
+            <a href="#hero" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services | Rituals</a>
+            <a href="schedule.html">Schedule | Contact</a>
+            <a href="gallery.html">Gallery</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero section">
+            <h1 data-aos="fade-up">One Gear Garage</h1>
+            <p class="tagline" data-aos="fade-up" data-aos-delay="100">Built. Tuned. Ride Refined</p>
+            <a href="#services" class="cta" data-aos="fade-up" data-aos-delay="200">Explore Services</a>
+        </section>
+
+        <section id="about" class="about section">
+            <div class="about-container">
+                <div class="about-text">
+                    <h2 data-aos="fade-up">About Us</h2>
+                    <p data-aos="fade-up" data-aos-delay="100">At One Gear Garage, BMX isn’t just a ride—it’s a ritual. We channel dark precision into every tune-up and chain cleanse.</p>
+                    <p data-aos="fade-up" data-aos-delay="200">I’ve always had a love for bikes—especially street and dirt bikes. But when my truck went into the shop and I lost my job, I ended up in a situation I never expected.</p>
+
+                    <div id="about-extended-content">
+                        <p data-aos="fade-up" data-aos-delay="300">With no way to get around and no money to fix the truck (which is still in the shop), I had to figure something out.</p>
+                        <p data-aos="fade-up" data-aos-delay="400">That’s when I bought my first pedal bike since I was a kid—the one in the photo. What started out as a backup plan quickly became a passion. I got into doing tricks, learning how to maintain and upgrade my bike, and understanding how everything worked.</p>
+                        <p data-aos="fade-up" data-aos-delay="500">Before I knew it, I was dreaming about tricks I couldn’t even do yet. That bike became my transportation, my training ground, and my outlet. I’ve put countless miles on it, and it’s never let me down.</p>
+                        <p data-aos="fade-up" data-aos-delay="600">These simple, human-powered machines are more powerful than people think. I built One Gear Garage to share that same reliability and freedom with other riders.</p>
+
+                        <div class="about-img" data-aos="zoom-in" data-aos-delay="700">
+                            <picture>
+                                <source srcset="images/MyBike.webp" type="image/webp">
+                                <img src="images/MyBike.jpg" alt="My BMX Bike">
+                            </picture>
+                        </div>
+                    </div>
+
+                    <button id="read-more-about-btn" class="cta" data-aos="fade-up" data-aos-delay="800">Read More</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services section">
+            <h2 data-aos="fade-up">Our Rituals</h2>
+            <div class="service-grid">
+                <div class="card" data-aos="fade-up" data-aos-delay="100"><h3>Basic Bike Wash</h3><p>Cleansing your steed. $25</p></div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200"><h3>Deep Clean</h3><p>From crank to crown. $35</p></div>
+                <div class="card" data-aos="fade-up" data-aos-delay="300"><h3>Chain & Lube</h3><p>Oiled and bound. $10</p></div>
+                <div class="card" data-aos="fade-up" data-aos-delay="400"><h3>Brake Tuning</h3><p>Stop the demons. $15</p></div>
+                <div class="card" data-aos="fade-up" data-aos-delay="500"><h3>Flat Repair</h3><p>Revive what’s lost. $7</p></div>
+                <div class="card" data-aos="fade-up" data-aos-delay="600"><h3>Complete Tune‑Up</h3><p>Reawaken the beast. $50</p></div>
+            </div>
+        </section>
+
+        <footer data-aos="fade-up">
+            <p>Want to book a service or ask a question?</p>
+            <a href="schedule.html" class="cta">Schedule Now / Contact Me</a>
+            <p>&copy; 2025 One Gear Garage. All Chains Bound.</p>
+        </footer>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script> 
+    <script src="script.js"></script> 
+</body>
+</html>

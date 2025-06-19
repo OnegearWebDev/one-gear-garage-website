@@ -1,0 +1,12 @@
+{
+  "particles": {
+    "number": {"value": 80},
+    "color": {"value": "#fff"},
+    "size": {"value": 1},
+    "move": {"enable": true, "speed": 1},
+    "line_linked": {"enable": false}
+  },
+  "interactivity": {
+    "events": {"onhover": {"enable": true, "mode": "repulse"}}
+  }
+}

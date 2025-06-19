@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - One Gear Garage</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=UnifrakturCook&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="styles.css"> 
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/v4/email.min.js"></script> 
+</head>
+<body>
+    <img id="bgImg" src="images/milky-way.jpg" alt="Milky Way Background" aria-hidden="true">
+
+    <div class="overlay"></div>
+
+    <div id="particles-js"></div>
+
+    <header class="navbar">
+        <div class="nav-top-row">
+            <a href="index.html" class="logo" id="logo-toggle" aria-haspopup="true" aria-expanded="false">
+                <img src="images/logo.png" alt="One Gear Garage Logo" class="logo-icon">
+                <span class="logo-text">One Gear Garage</span>
+            </a>
+        </div> 
+        <nav id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="index.html#services">Services | Rituals</a> <a href="schedule.html">Schedule | Contact</a>
+            <a href="gallery.html" class="active">Gallery</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="gallery" class="section">
+            <h2>Our Adventures</h2>
+            <p class="gallery-intro">See moments from our community rides and events, and highlights from our local groups!</p>
+
+            <div class="gallery-container">
+                <div class="my-uploads-gallery gallery-grid">
+                    <img src="images/gallery/your-pic-1.jpg" alt="Local Ride Photo 1">
+                    <img src="images/gallery/your-pic-2.jpg" alt="Community Event 2">
+                    <img src="images/gallery/your-pic-3.jpg" alt="Bike Meetup 3">
+                    <img src="images/gallery/your-pic-4.jpg" alt="Group Ride Scenic View">
+                    <img src="images/gallery/your-pic-5.jpg" alt="Rider Portrait">
+                    </div>
+
+                <h3 class="instagram-feed-heading">Community Instagram Highlights</h3>
+                <div class="instagram-feed-wrapper">
+                    <p style="text-align: center; color: #aaa; padding: 2rem;">
+                        Please visit a service like <a href="https://lightwidget.com/" target="_blank" style="color: #e63946;">LightWidget.com</a> or <a href="https://snapwidget.com/" target="_blank" style="color: #e63946;">SnapWidget.com</a> to generate embed code for public Instagram feeds. Paste the generated code here.
+                        <br><br>
+                        (Note: Direct embedding of other accounts' feeds without a service is not possible due to Instagram API restrictions.)
+                    </p>
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Want to book a service or ask a question?</p>
+        <a href="schedule.html" class="cta">Schedule Now / Contact Me</a>
+        <p>&copy; 2025 One Gear Garage. All Chains Bound.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script> 
+
+    <script>
+        // Ensure EmailJS is initialized on this page if contact form logic is reused later
+        (function() {
+            emailjs.init("crTJ1n1m38zYWkoNb"); // Replace with your actual User ID if different
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,962 @@
+/* RESET & BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100%; /* Ensure body stretches to at least viewport height */
+}
+
+/* BASE FONTS & COLORS */
+body {
+    font-family: 'Inter', sans-serif; /* Default font for general text */
+    color: #ddd; /* Default text color */
+    background-color: #0a0a0a; /* Fallback background color */
+}
+
+h1, h2, h3 {
+    font-family: 'Cinzel Decorative', cursive; /* Headline font */
+    color: #e63946; /* Brand accent color for headlines */
+}
+
+/* BACKGROUND IMAGE AS <img> */
+#bgImg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center center;
+    z-index: -2;
+}
+
+/* On mobile, shift focus to the right side of the image */
+@media (max-width: 768px) {
+    #bgImg {
+        object-position: right center;
+    }
+}
+
+/* SHADING OVERLAY */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.5); /* Semi-transparent dark overlay */
+    z-index: -1;
+}
+
+/* PARTICLE BACKGROUND LAYER (Commented out in HTML for performance) */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Above bgImg, below content */
+    pointer-events: none; /* Allows clicks to pass through to elements below */
+}
+
+/* FORCE PARTICLE CANVAS TO FULL SCREEN (Applies only if Particles.js is re-enabled) */
+canvas.particles-js-canvas-el {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* NAVBAR */
+:root {
+    --navbar-height: 8.2rem; /* Adjusted: New calculated height for larger logo with proper text */
+    --navbar-initial-mobile-height: 6.5rem; /* Adjusted: New calculated height for mobile */
+}
+
+.navbar {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background: rgba(18, 18, 18, 0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 50px;
+    padding: 0.4rem 2rem; /* Minimal vertical padding for desktop */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    height: var(--navbar-height);
+    overflow: visible;
+    transition: all 0.3s ease;
+}
+
+/* Fade overlay under navbar (covers content slightly below nav) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--navbar-height); /* Uses updated navbar-height */
+    background: linear-gradient(
+        rgba(18, 18, 18, 0.95) 20%,
+        rgba(18, 18, 18, 0.35) 60%,
+        transparent
+    );
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* New: Top row for logo and hamburger */
+.nav-top-row {
+    display: flex;
+    align-items: center;
+    width: auto; /* Default for desktop */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.9rem; /* Adjusted: Smaller text for desktop to accommodate larger icon */
+    color: #e63946;
+    text-shadow: 0 0 8px #e63946, 0 0 15px #911e25;
+    letter-spacing: 1px;
+    animation: logoGlow 3s ease-in-out infinite;
+    cursor: default; 
+    margin: 0;
+    padding: 0;
+}
+
+.logo-icon {
+    height: 125px; /* Adjusted: Larger icon for desktop */
+    width: auto;
+    transition: transform 0.3s ease;
+    margin: 0; 
+}
+
+.logo-icon:hover {
+    transform: scale(1.05);
+}
+
+.logo-text {
+    display: inline-block;
+    font-size: 1.9rem; /* Adjusted: Desktop font size to match .logo font-size */
+    line-height: 1;
+}
+
+@keyframes logoGlow {
+    0%, 100% {
+        text-shadow: 0 0 8px #e63946, 0 0 15px #911e25;
+    }
+    50% {
+        text-shadow: 0 0 16px #ff4d5b, 0 0 25px #911e25;
+    }
+}
+
+/* Desktop Navigation Links */
+header.navbar nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar nav a {
+    margin-left: 1.5rem;
+    padding: 0.4rem 0.8rem;
+    color: #ccc;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: color 0.3s, background 0.3s, text-shadow 0.3s;
+}
+
+.navbar nav a:hover {
+    color: #e63946;
+    text-shadow: 0 0 6px #ff4d5b;
+}
+
+.navbar nav a.active {
+    color: #fff;
+    background: rgba(230, 57, 70, 0.25);
+    text-shadow: 0 0 6px #ff4d5b;
+}
+
+/* MAIN CONTENT LAYOUT */
+main {
+    padding-top: var(--navbar-height); /* Space for the fixed desktop navbar */
+    /* Visual mask to fade content into the top of the page */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), black 25%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), black 25%);
+}
+
+/* HERO SECTION */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: transparent;
+}
+
+.hero h1 {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 4rem;
+    color: #e63946;
+    text-shadow: 0 0 15px rgba(230, 57, 70, 0.5);
+    margin-bottom: 1rem;
+}
+
+.tagline {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.2rem;
+    color: #aaa;
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.cta {
+    padding: 1rem 2rem;
+    border: 2px solid #e63946;
+    color: #e63946;
+    background: transparent;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.cta:hover {
+    background: #e63946;
+    color: #fff;
+}
+
+/* SECTIONS (general styling for padding, etc.) */
+.section {
+    padding: 4rem 2rem;
+}
+
+/* ABOUT SECTION */
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 280px;
+    max-width: 700px;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #ddd;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+    color: #ccc;
+}
+
+/* --- STYLES FOR COLLAPSIBLE ABOUT SECTION --- */
+
+#about-extended-content {
+    display: block; 
+}
+
+#read-more-about-btn {
+    margin-top: 1.5rem;
+    display: inline-block;
+    text-align: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.about-img {
+    flex: 1.5;
+    max-width: 900px;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-img img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+    filter: grayscale(10%) brightness(95%);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.about-img img:hover {
+    filter: none;
+    transform: scale(1.03);
+}
+
+/* SERVICES SECTION */
+.services h2 {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #f1f1f1;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(230, 57, 70, 0.3);
+}
+
+.card h3 {
+    color: #e63946;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    color: #ccc;
+}
+
+/* FOOTER */
+footer {
+    background: #0a0a0a;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+footer .cta {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 1.6rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #e63946;
+    border: 2px solid #e63946;
+    border-radius: 5px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+footer .cta:hover {
+    background: #e63946;
+    color: #fff;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+footer .cta:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* GALLERY-SPECIFIC STYLES */
+.gallery h2 {
+    font-family: 'Cinzel Decorative', cursive; /* Using the same headline font */
+    text-align: center;
+    font-size: 2.8rem;
+    color: #e63946;
+    margin-bottom: 1rem;
+}
+
+.gallery-intro {
+    text-align: center;
+    font-style: italic;
+    color: #aaa;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem; /* Space between the two gallery sections */
+}
+
+.my-uploads-gallery {
+    border-radius: 12px;
+    padding: 1rem;
+    background: rgba(18, 18, 18, 0.5);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 180px; /* Consistent height for uploaded images */
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+}
+
+.instagram-feed-heading {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    color: #f1f1f1;
+}
+
+.instagram-feed-wrapper {
+    background: rgba(18, 18, 18, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    /* Basic styling for the placeholder text */
+    min-height: 300px; /* Ensure space for the widget */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Lightbox styles (if you plan to use it for your own images) */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+/* === MOBILE STYLES (<= 768px) === */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 95%;
+        top: 1rem;
+        padding: 0;
+        
+        max-height: var(--navbar-initial-mobile-height); /* Initial collapsed height */
+        overflow: hidden;
+        
+        height: auto;
+        
+        transition: max-height 0.4s ease-out, background 0.4s ease, backdrop-filter 0.4s ease, border-radius 0.4s ease; 
+        
+        border-bottom-left-radius: 50px; 
+        border-bottom-right-radius: 50px; 
+        background: rgba(18, 18, 18, 0.6); 
+        backdrop-filter: blur(8px); 
+    }
+
+    .navbar.expanded {
+        max-height: 500px;
+        border-bottom-left-radius: 40px; 
+        border-bottom-right-radius: 40px; 
+        background: rgba(18, 18, 18, 0.9); 
+    }
+
+    /* Top row for logo */
+    .nav-top-row {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0.4rem 1rem; /* Minimal vertical padding for mobile top row */
+        flex-shrink: 0;
+        border-bottom: none; 
+    }
+
+    .logo {
+        cursor: pointer;
+        margin: 0; 
+        padding: 0;
+        font-size: 1.5rem; /* Adjusted: Smaller text for mobile to accommodate larger icon */
+    }
+
+    .logo-icon {
+        height: 100px; /* Adjusted: Slightly larger icon for mobile */
+        margin: 0; 
+    }
+
+    .logo-text {
+        font-size: 1.5rem; /* Adjusted: Mobile logo text size to fit on one line */
+        line-height: 1; 
+    }
+
+    .hamburger {
+        display: none;
+    }
+    
+    /* NAV MENU (flows within navbar) */
+    #nav-menu {
+        position: static; 
+        flex-grow: 1; 
+        width: 100%; 
+        padding: 0 1rem 0.6rem 1rem;
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+        
+        visibility: hidden; 
+        opacity: 0; 
+        transition: opacity 0.3s ease, visibility 0s linear 0.3s; 
+    }
+
+    .navbar.expanded #nav-menu {
+        visibility: visible; 
+        opacity: 1; 
+        transition-delay: 0s; 
+    }
+
+    #nav-menu a {
+        padding: 0.5rem 0;
+        width: 100%;
+        text-align: center;
+        display: block;
+        margin: 0;
+        max-width: none;
+        align-self: stretch; 
+
+        opacity: 1; 
+        transform: translateY(0); 
+        animation: none; 
+    }
+
+    /* Adjust main content padding for mobile nav */
+    main {
+        padding-top: calc(var(--navbar-initial-mobile-height) + 1.5rem); 
+    }
+
+    /* About Section Mobile Styles */
+    .about-text {
+        font-size: 0.95rem;
+        line-height: 1.65;
+    }
+
+    #about-extended-content {
+        max-height: 0; 
+        overflow: hidden; 
+        transition: max-height 0.7s ease-out, opacity 0.5s ease-out; 
+        opacity: 0; 
+    }
+
+    #about-extended-content.expanded {
+        max-height: 1000px; 
+        opacity: 1; 
+    }
+
+    #read-more-about-btn {
+        display: block;
+        width: fit-content; 
+        margin-left: auto; 
+        margin-right: auto; 
+    }
+
+    .about-img {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        height: 0;
+        padding-bottom: 65%; 
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1.5rem; 
+    }
+
+    .about-img img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        border-radius: 0;
+        box-shadow: none;
+        filter: grayscale(10%) brightness(95%);
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    /* Gallery Mobile adjustments */
+    .gallery-grid img {
+        height: 120px; /* Smaller image height for mobile */
+    }
+}
+
+/* === DESKTOP-SPECIFIC STYLES (min-width: 769px) === */
+@media (min-width: 769px) {
+    /* Navbar reverts to desktop layout */
+    .navbar {
+        flex-direction: row; 
+        max-height: var(--navbar-height);
+        padding: 0.4rem 2rem; /* Ensure consistency with base .navbar padding */
+        border-radius: 50px; 
+        background: rgba(18, 18, 18, 0.6); 
+        backdrop-filter: blur(8px);
+        height: var(--navbar-height); 
+        overflow: visible;
+    }
+    .nav-top-row {
+        width: auto;
+        padding: 0;
+        display: flex;
+        justify-content: flex-start;
+        border-bottom: none;
+    }
+    .hamburger {
+        display: none;
+    }
+    #nav-menu {
+        position: static;
+        visibility: visible !important;
+        opacity: 1 !important;
+        padding: 0 !important;
+        transition: none !important;
+        flex-direction: row;
+        align-items: center;
+    }
+    .navbar nav a {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        width: auto !important;
+        padding: 0.4rem 0.8rem !important;
+        display: inline-block !important;
+        text-align: left !important;
+        margin: 0 !important;
+    }
+
+    /* ABOUT SECTION DESKTOP LAYOUT */
+    .about-container {
+        flex-wrap: nowrap;
+    }
+
+    #about-extended-content {
+        display: none; 
+    }
+
+    .about-container .about-img { 
+        display: flex;
+    }
+
+    #read-more-about-btn {
+        display: inline-block;
+        width: auto;
+        margin-left: 0;
+        margin-right: 0;
+        text-decoration: none;
+    }
+}
+
+/* Schedule & Contact Section Styles */
+.section-intro {
+    text-align: center;
+    font-style: italic;
+    color: #aaa;
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+}
+
+.schedule-contact-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows sections to wrap on smaller screens */
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem;
+    background: rgba(18, 18, 18, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.schedule-section, .contact-section {
+    flex: 1;
+    min-width: 300px; /* Ensures sections don't get too narrow */
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.3); /* Slightly darker background for form areas */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.schedule-section h3, .contact-section h3 {
+    font-family: 'Cinzel Decorative', cursive;
+    color: #e63946;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.schedule-section p, .booking-message {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.booking-message {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #888;
+    margin-top: 1.5rem;
+}
+
+/* Form Styles */
+#contact-form label,
+.schedule-section label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ddd;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form input[type="tel"],
+#contact-form textarea,
+.schedule-section select,
+.schedule-section input[type="text"] { /* Applies to flatpickr input too */
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #222;
+    color: #eee;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#contact-form input[type="text"]:focus,
+#contact-form input[type="email"]:focus,
+#contact-form input[type="tel"]:focus,
+#contact-form textarea:focus,
+.schedule-section select:focus,
+.schedule-section input[type="text"]:focus {
+    border-color: #e63946;
+    box-shadow: 0 0 8px rgba(230, 57, 70, 0.5);
+    outline: none;
+}
+
+/* Style for readonly booking details input */
+#booking_details {
+    background-color: #333; /* Slightly different background for auto-filled field */
+    color: #bbb;
+    cursor: default;
+}
+
+#contact-form .cta {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.form-status {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+.form-status.success {
+    color: #4CAF50; /* Green for success */
+}
+
+.form-status.error {
+    color: #f44336; /* Red for error */
+}
+
+/* Flatpickr Calendar Theme Adjustments */
+.flatpickr-calendar {
+    background-color: #1a1a1a; /* Darker background */
+    border: 1px solid #333;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    color: #ddd; /* Default text color */
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+}
+
+.flatpickr-day.selected, .flatpickr-day.selected:hover,
+.flatpickr-day.startRange, .flatpickr-day.startRange:hover,
+.flatpickr-day.endRange, .flatpickr-day.endRange:hover,
+.flatpickr-day.today.selected,
+.flatpickr-day.today.startRange,
+.flatpickr-day.today.endRange {
+    background: #e63946; /* Your brand color for selected dates */
+    border-color: #e63946;
+    color: #fff;
+}
+
+.flatpickr-day.today:not(.selected) {
+    border-color: #e63946; /* Highlight today's date */
+    color: #e63946;
+}
+
+.flatpickr-day.inRange {
+    background: rgba(230, 57, 70, 0.2); /* Light highlight for range */
+    border-color: rgba(230, 57, 70, 0.2);
+}
+
+.flatpickr-day.disabled, .flatpickr-day.disabled:hover {
+    color: #555; /* Dim disabled days */
+    background: #111;
+}
+
+.flatpickr-months .flatpickr-month {
+    background-color: #222;
+    color: #ddd;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month .numInputWrapper {
+    color: #e63946;
+}
+
+.flatpickr-prev-month, .flatpickr-next-month {
+    fill: #e63946; /* Arrows */
+}
+
+.flatpickr-weekdays {
+    background-color: #1a1a1a; /* Match calendar background */
+}
+
+.flatpickr-weekday {
+    color: #aaa; /* Weekday names */
+}
+
+/* Time Picker styles (Flatpickr) */
+.flatpickr-time {
+    background-color: #1a1a1a;
+    border-top: 1px solid #333;
+    padding-top: 10px;
+}
+.flatpickr-time .numInputWrapper {
+    color: #e63946;
+}
+.flatpickr-time .numInputWrapper span {
+    border-color: #e63946;
+}
+.flatpickr-am-pm {
+    color: #e63946;
+}
+
+
+/* Responsive Adjustments for Schedule/Contact */
+@media (max-width: 768px) {
+    .schedule-contact-container {
+        flex-direction: column;
+        gap: 2rem; /* Less space between sections on mobile */
+    }
+
+    .schedule-section, .contact-section {
+        min-width: unset; /* Allow full width */
+    }
+
+    .schedule-section h3, .contact-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .section-intro {
+        font-size: 0.95rem;
+    }
+}
+
+/* Add a subtle animation for nav links on mobile when expanded */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ensure the nav links animation only applies when the menu is expanded */
+@media (max-width: 768px) {
+    .navbar.expanded #nav-menu a {
+        animation: fadeSlideIn 0.5s forwards var(--delay-index, 0s); /* Use custom property for delay */
+        opacity: 0; /* Start hidden before animation */
+        transform: translateY(20px); /* Start slightly off for animation */
+    }
+
+    .navbar:not(.expanded) #nav-menu a {
+        animation: none !important; /* Stop animation when collapsing */
+        opacity: 1; /* Ensure they are visible when not animating */
+        transform: none; /* Reset transform */
+    }
+}

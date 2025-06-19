@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule & Contact - One Gear Garage</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=UnifrakturCook&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/v4/email.min.js"></script> 
+</head>
+<body>
+    <img id="bgImg" src="images/milky-way.jpg" alt="Milky Way Background" aria-hidden="true">
+
+    <div class="overlay"></div>
+
+    <div id="particles-js"></div>
+
+    <header class="navbar">
+        <div class="nav-top-row">
+            <a href="index.html" class="logo" id="logo-toggle" aria-haspopup="true" aria-expanded="false">
+                <img src="images/logo.png" alt="One Gear Garage Logo" class="logo-icon">
+                <span class="logo-text">One Gear Garage</span>
+            </a>
+        </div> 
+        <nav id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="index.html#services">Services | Rituals</a> <a href="schedule.html" class="active">Schedule | Contact</a>
+            <a href="gallery.html">Gallery</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="schedule-contact" class="section" data-aos="fade-up">
+            <h2>Schedule a Service or Send a Message</h2>
+            <p class="section-intro">Use the calendar to pick a time, or fill out the form for general inquiries.</p>
+
+            <div class="schedule-contact-container">
+                <div class="schedule-section">
+                    <h3>Book Your Ritual</h3>
+                    <p>Select your desired date and available time slot.</p>
+                    
+                    <label for="service-select">Choose Service:</label>
+                    <select id="service-select" name="service" required>
+                        <option value="">-- Select a Service --</option>
+                        <option value="Basic Bike Wash">Basic Bike Wash ($25)</option>
+                        <option value="Deep Clean">Deep Clean ($35)</option>
+                        <option value="Chain & Lube">Chain & Lube ($10)</option>
+                        <option value="Brake Tuning">Brake Tuning ($15)</option>
+                        <option value="Flat Repair">Flat Repair ($7)</option>
+                        <option value="Complete Tune-Up">Complete Tune-Up ($50)</option>
+                    </select>
+
+                    <label for="date-picker">Select Date:</label>
+                    <input type="text" id="date-picker" placeholder="Click to select a date" readonly required>
+
+                    <label for="time-slot-select">Select Time Slot:</label>
+                    <select id="time-slot-select" name="time_slot" required>
+                        <option value="">-- Select a Time --</option>
+                        </select>
+
+                    <p class="booking-message">Your selected date and time will pre-fill the contact form below.</p>
+                </div>
+
+                <div class="contact-section">
+                    <h3>General Inquiry / Confirm Booking</h3>
+                    <form id="contact-form">
+                        <label for="user_name">Name:</label>
+                        <input type="text" id="user_name" name="user_name" required>
+
+                        <label for="user_email">Email:</label>
+                        <input type="email" id="user_email" name="user_email" required>
+
+                        <label for="user_phone">Phone (Optional):</label>
+                        <input type="tel" id="user_phone" name="user_phone">
+
+                        <label for="booking_details">Booking Details (Auto-filled):</label>
+                        <input type="text" id="booking_details" name="booking_details" readonly>
+
+                        <label for="message">Your Message:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+
+                        <button type="submit" class="cta">Send Message</button>
+                        <p id="form-status" class="form-status"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Questions? Want to book a service?</p>
+        <a href="schedule.html" class="cta">Schedule Now / Contact Me</a>
+        <p>&copy; 2025 One Gear Garage. All Chains Bound.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="script.js"></script> 
+
+    <script>
+        // EmailJS Initialization (already existing in your index.html, but good to have here too if standalone)
+        (function() {
+            emailjs.init("crTJ1n1m38zYWkoNb"); // IMPORTANT: Replace with your actual EmailJS Public Key/User ID if different
+        })();
+    </script>
+</body>
+</html>
