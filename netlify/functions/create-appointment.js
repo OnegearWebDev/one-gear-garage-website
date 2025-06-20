@@ -36,9 +36,25 @@ exports.handler = async (event) => {
     };
   }
 
+  // Get the database URL from environment variables
+  const dbUrl = process.env.DATABASE_URL;
+
+  // CRITICAL CHECK: Log the actual value of the environment variable
+  console.log('Function DB URL Check: Length', dbUrl ? dbUrl.length : 'undefined/null');
+  console.log('Function DB URL Check: Starts with', dbUrl ? dbUrl.substring(0, 10) + '...' : 'undefined/null');
+
+
+  if (!dbUrl) {
+      console.error('CRITICAL ERROR: DATABASE_URL environment variable is NOT set in Netlify function runtime!');
+      return {
+          statusCode: 500,
+          body: JSON.stringify({ error: 'Server configuration error: Database URL missing. Please check Netlify environment variables.' }),
+      };
+  }
+
   // Initialize the PostgreSQL client using the environment variable for security
   const client = new Client({
-    connectionString: process.env.NEON_DATABASE_URL,
+    connectionString: dbUrl, // <-- CORRECTED: Now uses the 'DATABASE_URL' variable
     ssl: {
       rejectUnauthorized: false // Often required for connecting to Neon from Netlify Functions
     }
@@ -73,13 +89,19 @@ exports.handler = async (event) => {
 
   } catch (error) {
     console.error('Database error:', error);
+    // Include more details in the error response for debugging
     return {
       statusCode: 500,
       headers: {
         "Access-Control-Allow-Origin": "*", // Same CORS headers for error responses
         "Access-Control-Allow-Headers": "Content-Type"
       },
-      body: JSON.stringify({ error: 'Failed to book appointment due to a server error.', details: error.message }),
+      body: JSON.stringify({
+        error: 'Failed to book appointment due to a server error.',
+        details: error.message,
+        // Optionally, include the partial DB URL (first few chars) for extreme debugging, but be cautious with sensitive info
+        // debug_db_url_prefix: dbUrl ? dbUrl.substring(0, 20) + '...' : 'undefined'
+      }),
     };
   } finally {
     await client.end(); // Always close the database connection
