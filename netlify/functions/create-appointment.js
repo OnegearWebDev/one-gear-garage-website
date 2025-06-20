@@ -40,6 +40,7 @@ exports.handler = async (event) => {
   const dbUrl = process.env.DATABASE_URL;
 
   // CRITICAL CHECK: Log the actual value of the environment variable
+  // Only log partial URL for security, if you want full, remove substring
   console.log('Function DB URL Check: Length', dbUrl ? dbUrl.length : 'undefined/null');
   console.log('Function DB URL Check: Starts with', dbUrl ? dbUrl.substring(0, 10) + '...' : 'undefined/null');
 
@@ -54,7 +55,7 @@ exports.handler = async (event) => {
 
   // Initialize the PostgreSQL client using the environment variable for security
   const client = new Client({
-    connectionString: dbUrl, // <-- CORRECTED: Now uses the 'DATABASE_URL' variable
+    connectionString: dbUrl, // Now correctly uses the 'DATABASE_URL' variable
     ssl: {
       rejectUnauthorized: false // Often required for connecting to Neon from Netlify Functions
     }
@@ -65,10 +66,11 @@ exports.handler = async (event) => {
 
     // SQL INSERT query to add the new appointment to your 'appointments' table
     // Ensure column names here match your 'CREATE TABLE' statement in Neon
+    // Removed JavaScript comments that were causing SQL syntax error
     const query = `
       INSERT INTO appointments (customer_name, customer_email, service_type, appointment_date, appointment_time, notes)
       VALUES ($1, $2, $3, $4, $5, $6)
-      RETURNING id; // Returns the ID of the new row
+      RETURNING id;
     `;
     const values = [customer_name, customer_email, service_type, appointment_date, appointment_time, notes];
 
