@@ -4,33 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule & Contact - One Gear Garage</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=UnifrakturCook&family=Inter:wght@300;600&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    
     <link rel="stylesheet" href="styles.css"> 
-    
+
+    <!-- EmailJS SDK (loaded here as well for schedule.html) -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/v4/email.min.js" defer></script> 
 </head>
 <body>
-    <img id="bgImg" src="images/milky-way.jpg" alt="Milky Way Background" aria-hidden="true">
-
+    <picture>
+        <source srcset="images/milky-way.webp" type="image/webp">
+        <img src="images/milky-way.jpg" id="bgImg" alt="Milky Way Background" aria-hidden="true">
+    </picture>
     <div class="overlay"></div>
 
     <header class="navbar">
         <div class="nav-top-row">
             <a href="index.html" class="logo" id="logo-toggle" aria-haspopup="true" aria-expanded="false">
-                <img src="images/logo.png" alt="One Gear Garage Logo" class="logo-icon">
+                <picture>
+                    <source srcset="images/logo.webp" type="image/webp">
+                    <img src="images/logo.png" alt="One Gear Garage Logo" class="logo-icon">
+                </picture>
                 <span class="logo-text">One Gear Garage</span>
             </a>
         </div> 
         <nav id="nav-menu">
             <a href="index.html">Home</a>
-            <a href="about.html">About</a>
+            <a href="index.html#about">About</a>
             <a href="index.html#services">Services | Rituals</a>
             <a href="schedule.html" class="active">Schedule | Contact</a>
             <a href="gallery.html">Gallery</a>
@@ -39,44 +44,47 @@
 
     <main>
         <section id="schedule-contact" class="section" data-aos="fade-up">
-            <div class="schedule-contact-container">
-                <div class="schedule-section">
-                    <h3>Book Your Ritual</h3>
-                    <p>Select your desired date and available time slot.</p>
-                    
-                    <label for="service-select">Choose Service:</label>
-                    <select id="service-select" required>
-                        <option value="">-- Select a Service --</option>
-                        <option value="Basic Bike Wash">Basic Bike Wash ($25)</option>
-                        <option value="Deep Clean">Deep Clean ($35)</option>
-                        <option value="Chain & Lube">Chain & Lube ($10)</option>
-                        <option value="Brake Tuning">Brake Tuning ($15)</option>
-                        <option value="Flat Repair">Flat Repair ($7)</option>
-                        <option value="Complete Tune-Up">Complete Tune-Up ($50)</option>
-                    </select>
+            <h2 class="section-title">Schedule Your Ritual or Send an Inquiry</h2>
+            <p class="section-intro">Use the form below to book your service or send us a general message. For direct contact, see details below.</p>
 
-                    <label for="date-picker">Select Date:</label>
-                    <input type="text" id="date-picker" placeholder="Click to select a date" readonly required>
+            <!-- The contact details block, now visually separate and "hovering" -->
+            <div class="contact-details-floating">
+                <p><strong>Phone:</strong> <a href="tel:+15201234567">(520) 123-4567</a></p>
+                <p><strong>Email:</strong> <a href="mailto:info@onegeargarage.xyz">info@onegeargarage.xyz</a></p>
+                <p><strong>Location:</strong> 123 Auto Lane, Tucson, AZ 85701</p>
+                <p class="note">*(Please update this address and phone number with your actual business details.)*</p>
+            </div>
 
-                    <label for="time-slot-select">Select Time Slot:</label>
-                    <select id="time-slot-select" required>
-                        <option value="">-- Select a Time --</option>
-                    </select>
+            <!-- The unified form wrapping the two columns -->
+            <form id="bookingContactForm">
+                <div class="schedule-contact-container">
+                    <!-- Scheduling Column -->
+                    <div class="scheduling-column">
+                        <h3>Book Your Service</h3>
+                        <label for="service-select">Choose Service:</label>
+                        <select id="service-select" name="service" required>
+                            <option value="">-- Select a Service --</option>
+                            <option value="Basic Bike Wash ($25)">Basic Bike Wash ($25)</option>
+                            <option value="Deep Clean ($35)">Deep Clean ($35)</option>
+                            <option value="Chain & Lube ($10)">Chain & Lube ($10)</option>
+                            <option value="Brake Tuning ($15)">Brake Tuning ($15)</option>
+                            <option value="Flat Repair ($7)">Flat Repair ($7)</option>
+                            <option value="Complete Tune-Up ($50)">Complete Tune-Up ($50)</option>
+                            <option value="General Inquiry">General Inquiry (No Service)</option>
+                        </select>
 
-                    <p class="booking-message">Your selected date and time will pre-fill the contact form below.</p>
-                    
-                    <button id="scheduleAppointmentButton" class="cta">Schedule Appointment</button>
-                    <div id="responseMessage" style="margin-top: 15px; font-weight: bold;"></div>
-                </div>
+                        <label for="date-picker">Select Date:</label>
+                        <input type="text" id="date-picker" name="appointment_date" placeholder="Click to select a date" readonly required>
 
-                <div class="contact-section">
-                    <h3>General Inquiry / Confirm Booking Details</h3>
-                    <form name="general-contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-                        <input type="hidden" name="form-name" value="general-contact" />
-                        <p hidden>
-                          <label>Don’t fill this out: <input name="bot-field" /></label>
-                        </p>
+                        <label for="time-slot-select">Select Time Slot:</label>
+                        <select id="time-slot-select" name="appointment_time" required>
+                            <option value="">-- Select a Time --</option>
+                        </select>
+                    </div>
 
+                    <!-- Contact/Inquiry Column -->
+                    <div class="contact-inquiry-column">
+                        <h3>Your Details & Message</h3>
                         <label for="user_name">Name:</label>
                         <input type="text" id="user_name" name="name" required>
 
@@ -85,23 +93,21 @@
 
                         <label for="user_phone">Phone (Optional):</label>
                         <input type="tel" id="user_phone" name="phone">
-
-                        <label for="booking_details">Booking Details (Auto-filled):</label>
-                        <input type="text" id="booking_details" name="booking_details" readonly>
-
-                        <label for="message">Your Message:</label>
+                        
+                        <label for="message">Your Message / Specific Request:</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
-
-                        <button type="submit" class="cta">Send General Inquiry</button>
-                    </form>
+                    </div>
                 </div>
-            </div>
+                <!-- Submit button and status message outside the columns but inside the form -->
+                <button type="submit" class="cta submit-form-btn">Submit Request</button>
+                <div id="formStatusMessage" class="form-status"></div>
+            </form>
         </section>
     </main>
 
     <footer>
-        <p>Questions? Want to book a service?</p>
-        <a href="schedule.html" class="cta">Schedule Now / Contact Me</a>
+        <p></p>
+        <!-- The redundant link has been removed from here -->
         <p>&copy; 2025 One Gear Garage. All Chains Bound.</p>
     </footer>
 
