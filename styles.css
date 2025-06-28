@@ -200,9 +200,9 @@ header.navbar nav {
 /* MAIN CONTENT LAYOUT */
 main {
     padding-top: var(--navbar-height); /* Space for the fixed desktop navbar */
-    /* Visual mask to fade content into the top of the page */
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), black 25%);
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), black 25%);
+    /* Removed mask-image property which could hide content at the top */
+    /* -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), black 25%); */
+    /* mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), black 25%); */
 }
 
 /* HERO SECTION */
@@ -1043,10 +1043,10 @@ footer .cta:focus {
     /* Services Intro Feature Layout on Desktop */
     .services-intro-feature { /* Reusing styles from previous .services-intro-container */
         display: flex;
-        flex-direction: row;
-        gap: 3rem;
-        align-items: center;
-        max-width: 1000px;
+        flex-direction: column; /* Changed to column to stack text and image vertically */
+        align-items: center; /* Center items horizontally in a column layout */
+        gap: 2rem; /* Reduced gap for column layout */
+        max-width: 800px; /* Adjusted max-width to make it more concise when stacked */
         margin: 3rem auto 4rem auto; /* Adjusted: Add top margin, more bottom margin for grid separation */
         background: rgba(18, 18, 18, 0.5);
         backdrop-filter: blur(5px);
@@ -1056,22 +1056,17 @@ footer .cta:focus {
     }
 
     .services-intro-feature .services-intro-text { /* Specific targeting for text within the new feature block */
-        flex: 1;
-        text-align: left; /* Align text left on desktop */
+        width: 100%; /* Make text content take full width of its parent */
+        text-align: center; /* Center text within this full width */
+        max-width: 700px; /* Optional: constrain text width for readability */
     }
 
     .services-intro-feature .services-intro-image { /* Specific targeting for image within the new feature block */
-        flex: 1;
+        width: 100%; /* Make image take full width of its parent */
+        max-width: 600px; /* Constrain image width for better presentation */
         display: flex;
-        justify-content: center;
+        justify-content: center; /* Center the image itself */
         align-items: center;
-    }
-
-    .services-intro-feature .services-intro-image img { /* Image within the feature block */
-        max-width: 100%;
-        height: auto;
-        border-radius: 12px;
-        box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
     }
 }
 
@@ -1132,7 +1127,7 @@ footer .cta:focus {
     }
 
     .services-intro-feature .services-intro-text { /* Specific targeting for text within the new feature block */
-        text-align: center; /* Center text on mobile */
+        text-align: center; /* Changed to center */
     }
 
     .services-intro-feature .services-intro-image { /* Specific targeting for image within the new feature block */
