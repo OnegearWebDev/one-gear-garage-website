@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - One Gear Garage</title>
+
+    <meta name="description" content="Explore the One Gear Garage gallery featuring custom BMX builds, detailed repairs, and action shots from the Tucson BMX community.">
+    <link rel="canonical" href="https://onegeargarage.xyz/gallery.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=UnifrakturCook&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Mobile Navbar Animation Styles */
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar.expanded #nav-menu a {
+                animation: fadeSlideIn 0.5s forwards var(--delay-index, 0s);
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            .navbar:not(.expanded) #nav-menu a {
+                animation: none !important;
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <picture>
+        <source srcset="images/milky-way.webp" type="image/webp">
+        <img src="images/milky-way.jpg" id="bgImg" alt="Milky Way Background" aria-hidden="true">
+    </picture>
+    <div class="overlay"></div>
+
+    <header class="navbar">
+        <div class="nav-top-row">
+            <a href="index.html" class="logo" id="logo-toggle" aria-haspopup="true" aria-expanded="false">
+                <picture>
+                    <source srcset="images/logo.webp" type="image/webp">
+                    <img src="images/logo.png" alt="One Gear Garage Logo" class="logo-icon">
+                </picture>
+                <span class="logo-text">One Gear Garage</span>
+            </a>
+        </div> 
+        <nav id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about-full.html">About</a>
+            <a href="services.html">Services | Rituals</a>
+            <a href="schedule.html">Schedule | Contact</a>
+            <a href="gallery.html" class="active">Gallery</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="gallery" class="gallery section">
+            <h2 data-aos="fade-up">Our Gallery</h2>
+            <p class="gallery-intro" data-aos="fade-up" data-aos-delay="100">A visual journey through our work and the spirit of BMX.</p>
+
+            <div class="gallery-container">
+                <div class="my-uploads-gallery" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="instagram-feed-heading">Our Latest Creations</h3>
+                    <div class="gallery-grid">
+                        <!-- Gallery grid is now intentionally blank, relying on CSS for structure -->
+                    </div>
+                    <p class="empty-gallery-message">Check back soon for exciting new builds and repairs!</p>
+                </div>
+
+                <div class="instagram-feed-wrapper" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="instagram-feed-heading">From Our Instagram Feed</h3>
+                    <p style="color: #aaa; font-style: italic;">(Instagram widget would go here)</p>
+                    <p style="color: #aaa; font-size: 0.9em;">Connect with us on Instagram for daily updates and more!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Questions? Want to book a service?</p>
+        <a href="schedule.html" class="cta">Schedule Now / Contact Me</a>
+        <p>&copy; 2025 One Gear Garage. All Chains Bound.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize AOS library for animations
+            AOS.init({
+                duration: 800,
+                once: true,
+                mirror: false,
+            });
+            
+            // Mobile Navbar Toggle Logic with Animation
+            const navbar = document.querySelector('.navbar');
+            const navMenu = document.getElementById('nav-menu');
+            const logoToggle = document.getElementById('logo-toggle');
+
+            function toggleNav() {
+                navbar.classList.toggle('expanded');
+                
+                // Update aria-expanded attribute
+                const isExpanded = navbar.classList.contains('expanded');
+                logoToggle.setAttribute('aria-expanded', isExpanded);
+            }
+
+            // Toggle menu on logo click for mobile
+            if (logoToggle) {
+                logoToggle.addEventListener('click', (event) => {
+                    // Only toggle on mobile
+                    if (window.innerWidth <= 768) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        toggleNav();
+                    }
+                });
+            }
+
+            // Close the nav menu if a link is clicked
+            if (navMenu) {
+                navMenu.addEventListener('click', (event) => {
+                    if (event.target.tagName === 'A' && navbar.classList.contains('expanded')) {
+                        toggleNav();
+                    }
+                });
+            }
+
+            // Close nav menu when clicking outside
+            document.addEventListener('click', (event) => {
+                if (navbar && !navbar.contains(event.target) && navbar.classList.contains('expanded')) {
+                    toggleNav();
+                }
+            });
+
+            // Add CSS variables for staggered animation delay for mobile nav
+            const navLinks = document.querySelectorAll('#nav-menu a');
+            navLinks.forEach((link, index) => {
+                link.style.setProperty('--delay-index', `${index * 0.1}s`);
+            });
+
+            // Handle window resize to ensure proper nav state
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768 && navbar.classList.contains('expanded')) {
+                    navbar.classList.remove('expanded');
+                    logoToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

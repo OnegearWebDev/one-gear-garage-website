@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>One Gear Garage - Our Full Story</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=UnifrakturCook&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .brand-name {
+            color: #e63946 !important;
+        }
+
+        /* RESET & BASE - PREVENT BACKGROUND SCROLL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            min-height: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* BASE FONTS & COLORS */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #ccc;
+            background-color: #0a0a0a;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel Decorative', cursive;
+            color: #e63946;
+        }
+
+        /* BACKGROUND IMAGE AS <img> - FIXED SCROLLING */
+        #bgImg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            object-position: center center;
+            z-index: -2;
+            will-change: auto;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        @media (max-width: 768px) {
+            #bgImg {
+                object-position: right center;
+            }
+        }
+
+        /* SHADING OVERLAY - FIXED SCROLLING */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.5);
+            z-index: -1;
+            will-change: auto;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        /* PARTICLE BACKGROUND LAYER - FIXED SCROLLING */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            will-change: auto;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        canvas.particles-js-canvas-el {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            pointer-events: none;
+            z-index: -1;
+            will-change: auto;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        /* NAVBAR - Same as your index.html */
+        :root {
+            --navbar-height: 8.2rem;
+            --navbar-initial-mobile-height: 6.5rem;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 50px;
+            padding: 0.4rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+            height: var(--navbar-height);
+            overflow: visible;
+            transition: all 0.3s ease;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--navbar-height);
+            background: linear-gradient(
+                rgba(18, 18, 18, 0.95) 20%,
+                rgba(18, 18, 18, 0.35) 60%,
+                transparent
+            );
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .nav-top-row {
+            display: flex;
+            align-items: center;
+            width: auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.9rem;
+            color: #e63946;
+            text-shadow: 0 0 8px #e63946, 0 0 15px #911e25;
+            letter-spacing: 1px;
+            animation: logoGlow 3s ease-in-out infinite;
+            cursor: default;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo-icon {
+            height: 125px;
+            width: auto;
+            transition: transform 0.3s ease;
+            margin: 0;
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            display: inline-block;
+            font-size: 1.9rem;
+            line-height: 1;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% {
+                text-shadow: 0 0 8px #e63946, 0 0 15px #911e25;
+            }
+            50% {
+                text-shadow: 0 0 16px #ff4d5b, 0 0 25px #911e25;
+            }
+        }
+
+        header.navbar nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar nav a {
+            margin-left: 1.5rem;
+            padding: 0.4rem 0.8rem;
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: color 0.3s, background 0.3s, text-shadow 0.3s;
+        }
+
+        .navbar nav a:hover {
+            color: #e63946;
+            text-shadow: 0 0 6px #ff4d5b;
+        }
+
+        .navbar nav a.active {
+            color: #fff;
+            background: rgba(230, 57, 70, 0.25);
+            text-shadow: 0 0 6px #ff4d5b;
+        }
+
+        /* MAIN CONTENT LAYOUT */
+        main {
+            padding-top: var(--navbar-height);
+        }
+
+        /* HERO SECTION - Enhanced */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: transparent;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: clamp(3rem, 8vw, 5rem);
+            color: #e63946;
+            text-shadow: 0 0 15px rgba(230, 57, 70, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .hero .subtitle {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #aaa;
+            font-style: italic;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: #e63946;
+            font-size: 2rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 4rem 2rem;
+        }
+
+        /* STORY TIMELINE SECTION */
+        .story-timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: #e63946;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(230, 57, 70, 0.3);
+        }
+
+        .timeline-header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Timeline Line - Base (hidden initially) - DESKTOP DEFAULT */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 16rem;
+            bottom: 0;
+            width: 3px;
+            background: rgba(230, 57, 70, 0.1);
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        /* Animated timeline line that fills as you scroll - DESKTOP DEFAULT */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 10rem;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(180deg, #e63946, #ff4d5b, #e63946);
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px rgba(230, 57, 70, 0.6);
+            z-index: 0;
+            transition: height 0.1s ease-out;
+            opacity: 1;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 3rem;
+            position: relative;
+            margin: 4rem 0;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(even) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-left: 3rem;
+            padding-right: 0;
+            margin-left: auto;
+        }
+
+        .timeline-content {
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(8px);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(230, 57, 70, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            max-width: 500px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(230, 57, 70, 0.1);
+        }
+
+        .timeline-content h3 {
+            color: #e63946;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-shadow: 0 0 8px rgba(230, 57, 70, 0.2);
+        }
+
+        .timeline-content p {
+            color: #ddd;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            right: -2rem;
+            top: 2rem;
+            width: 25px;
+            height: 25px;
+            background: #e63946;
+            border-radius: 50%;
+            border: 5px solid #0a0a0a;
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -2rem;
+            right: auto;
+        }
+
+        /* Featured Image Section */
+        .featured-image {
+            background: rgba(18, 18, 18, 0.5);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 4rem auto;
+            max-width: 1000px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .featured-image h3 {
+            color: #e63946;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+        }
+
+        .image-container {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .image-container:hover {
+            transform: scale(1.02);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            filter: grayscale(10%) brightness(95%);
+            transition: filter 0.3s ease;
+        }
+
+        .image-container:hover img {
+            filter: none;
+        }
+
+        /* Stats Section - Matching your index.html style */
+        .stats-section {
+            background: rgba(18, 18, 18, 0.5);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 4rem 2rem;
+            margin: 4rem auto;
+            max-width: 1200px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .stats-section h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(230, 57, 70, 0.7), 0 0 20px rgba(230, 57, 70, 0.5), 0 0 30px rgba(230, 57, 70, 0.3);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            background: linear-gradient(145deg, #1a1a1a 0%, #151515 100%);
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(230, 57, 70, 0.1);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .stat-item:hover::before {
+            left: 100%;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.4),
+                0 0 25px rgba(230, 57, 70, 0.2),
+                0 0 0 1px rgba(230, 57, 70, 0.3);
+            border-color: rgba(230, 57, 70, 0.4);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #e63946;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .stat-label {
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+
+        /* CTA BUTTON */
+        .cta {
+            padding: 1.2rem 2.5rem;
+            border: 2px solid #e63946;
+            color: #e63946;
+            background: transparent;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #e63946, #ff4d5b);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta:hover::before {
+            left: 0;
+        }
+
+        .cta:hover {
+            color: #fff;
+            box-shadow: 0 0 25px rgba(230, 57, 70, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0a0a0a;
+            padding: 2rem 1rem;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        footer .cta {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.6rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: #e63946;
+            border: 2px solid #e63946;
+            border-radius: 5px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        footer .cta:hover {
+            background: #e63946;
+            color: #fff;
+            text-shadow: none;
+            box-shadow: none;
+        }
+
+        /* MOBILE STYLES - FIXED TIMELINE */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 95%;
+                top: 1rem;
+                padding: 0;
+                max-height: var(--navbar-initial-mobile-height);
+                overflow: hidden;
+                height: auto;
+                transition: max-height 0.4s ease-out, background 0.4s ease, backdrop-filter 0.4s ease, border-radius 0.4s ease;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                background: rgba(18, 18, 18, 0.6);
+                backdrop-filter: blur(8px);
+            }
+
+            .navbar.expanded {
+                max-height: 500px;
+                border-bottom-left-radius: 40px;
+                border-bottom-right-radius: 40px;
+                background: rgba(18, 18, 18, 0.9);
+            }
+
+            .nav-top-row {
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 0.4rem 1rem;
+                flex-shrink: 0;
+                border-bottom: none;
+            }
+
+            .logo {
+                cursor: pointer;
+                margin: 0;
+                padding: 0;
+                font-size: 1.5rem;
+            }
+
+            .logo-icon {
+                height: 100px;
+                margin: 0;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+                line-height: 1;
+            }
+
+            #nav-menu {
+                position: static;
+                flex-grow: 1;
+                width: 100%;
+                padding: 0 1rem 0.6rem 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            }
+
+            .navbar.expanded #nav-menu {
+                visibility: visible;
+                opacity: 1;
+                transition-delay: 0s;
+            }
+
+            #nav-menu a {
+                padding: 0.5rem 0;
+                width: 100%;
+                text-align: center;
+                display: block;
+                margin: 0;
+                max-width: none;
+                align-self: stretch;
+                opacity: 1;
+                transform: translateY(0);
+                animation: none;
+            }
+
+            main {
+                padding-top: calc(var(--navbar-initial-mobile-height) + 1.5rem);
+            }
+
+            /* MOBILE TIMELINE POSITIONING - FIXED */
+            .timeline::before {
+                left: 30px; /* Fixed position for mobile line */
+                transform: none;
+                top: 20rem; /* Increased spacing for mobile */
+            }
+
+            .timeline-line {
+                left: 30px; /* Match the base line position */
+                transform: none;
+                top: 20rem; /* Increased spacing for mobile */
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px; /* Space for dot + some padding */
+                padding-right: 1rem;
+                justify-content: flex-start;
+                margin-left: 0;
+            }
+
+            .timeline-item:nth-child(even) {
+                width: 100%;
+                padding-left: 70px; /* Same as odd items */
+                padding-right: 1rem;
+                margin-left: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-dot {
+                left: 17px !important; /* Center on the 30px line (30-13=17) */
+                right: auto !important;
+                width: 25px;
+                height: 25px;
+                top: 2rem;
+            }
+
+            .timeline-content {
+                padding: 2rem 1.5rem;
+                max-width: none;
+                margin: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .featured-image {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* DESKTOP-SPECIFIC STYLES */
+        @media (min-width: 769px) {
+            .navbar {
+                flex-direction: row;
+                max-height: var(--navbar-height);
+                padding: 0.4rem 2rem;
+                border-radius: 50px;
+                background: rgba(18, 18, 18, 0.6);
+                backdrop-filter: blur(8px);
+                height: var(--navbar-height);
+                overflow: visible;
+            }
+            .nav-top-row {
+                width: auto;
+                padding: 0;
+                display: flex;
+                justify-content: flex-start;
+                border-bottom: none;
+            }
+            #nav-menu {
+                position: static;
+                visibility: visible !important;
+                opacity: 1 !important;
+                padding: 0 !important;
+                transition: none !important;
+                flex-direction: row;
+                align-items: center;
+            }
+            #nav-menu a {
+                opacity: 1 !important;
+                transform: none !important;
+                animation: none !important;
+                width: auto !important;
+                padding: 0.4rem 0.8rem !important;
+                display: inline-block !important;
+                text-align: left !important;
+                margin: 0 !important;
+            }
+
+            /* DESKTOP TIMELINE POSITIONING - EXPLICIT */
+            .timeline::before {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 16rem; /* Desktop positioning */
+            }
+
+            .timeline-line {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 16rem; /* Desktop positioning */
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar.expanded #nav-menu a {
+                animation: fadeSlideIn 0.5s forwards var(--delay-index, 0s);
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            .navbar:not(.expanded) #nav-menu a {
+                animation: none !important;
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.1.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.1.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+
+    <div id="particles-js"></div>
+    <picture>
+        <source srcset="images/milky-way.webp" type="image/webp">
+        <img src="images/milky-way.jpg" id="bgImg" alt="Milky Way Background" aria-hidden="true">
+    </picture>
+    <div class="overlay"></div>
+
+    <header class="navbar">
+        <div class="nav-top-row">
+            <a href="index.html" class="logo" id="logo-toggle" aria-haspopup="true" aria-expanded="false">
+                <picture>
+                    <source srcset="images/logo.webp" type="image/webp">
+                    <img src="images/logo.png" alt="One Gear Garage Logo" class="logo-icon">
+                </picture>
+                <span class="logo-text">One Gear Garage</span>
+            </a>
+        </div> 
+        <nav id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about-full.html" class="active">About</a>
+            <a href="services.html">Services | Rituals</a>
+            <a href="schedule.html">Schedule | Contact</a>
+            <a href="gallery.html">Gallery</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1 data-aos="fade-up">Our Journey</h1>
+            <p class="subtitle" data-aos="fade-up" data-aos-delay="200">
+                From desperate necessity to passionate purpose - the story behind One Gear Garage
+            </p>
+            <div class="scroll-indicator">↓</div>
+        </section>
+
+        <section class="section">
+            <div class="story-timeline">
+                <div class="timeline-header" data-aos="fade-up">
+                    <h2>The Story Unfolds</h2>
+                    <p>Every great journey has pivotal moments. Here's how One Gear Garage came to be.</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-line" id="timeline-line"></div>
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-content">
+                            <h3>The Breakdown</h3>
+                            <p>My truck went into the shop and I lost my job. Suddenly, I was stranded with no transportation and no income. What seemed like the worst possible situation became the catalyst for everything that followed.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-content">
+                            <h3>The First Ride</h3>
+                            <p>With no money to fix the truck (which is still in the shop), I bought my first pedal bike since I was a kid. It was supposed to be temporary transportation, but something magical happened the moment I started riding.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-content">
+                            <h3>The Obsession Begins</h3>
+                            <p>What started as necessity became passion. I found myself learning tricks, diving deep into bike maintenance, and understanding every component. The bike wasn't just transportation anymore—it was freedom, creativity, and endless possibility.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-content">
+                            <h3>Dreams Take Flight</h3>
+                            <p>Before I knew it, I was dreaming about tricks I couldn't even do yet. That bike became my training ground, my outlet, and my constant companion. Through countless miles and endless practice, I discovered the true power of human-powered machines.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-content">
+                            <h3>One Gear Garage is Born</h3>
+                            <p>The realization hit me: these simple, human-powered machines are more powerful than people think. I built One Gear Garage to share that same reliability, freedom, and joy with other riders—because every bike deserves to be treated as the incredible machine it is.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="featured-image" data-aos="zoom-in">
+                <h3>The Bike That Started It All</h3>
+                <div class="image-container">
+                    <picture>
+                        <source srcset="images/MyBike.webp" type="image/webp">
+                        <img src="images/MyBike.jpg" alt="My BMX Bike - The bike that started One Gear Garage">
+                    </picture>
+                </div>
+                <p style="color: #ccc; margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.6;">
+                    This is the bike that changed everything. From desperate necessity to pure passion, 
+                    it's been my reliable companion through countless miles and endless adventures. 
+                    Every service at One Gear Garage carries the spirit of this transformative journey.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="stats-section" data-aos="fade-up">
+                <h2>By The Numbers</h2>
+                <div class="stats-grid">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Miles Conquered</span>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Tricks Mastered</span>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Hours of Joy</span>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="500">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Dream Realized</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;" data-aos="fade-up">
+                <h2 style="font-size: 3rem; margin-bottom: 2rem; color: #e63946;">Ready to Start Your Journey?</h2>
+                <p style="font-size: 1.3rem; color: #ddd; margin-bottom: 3rem; line-height: 1.6;">
+                    These simple, human-powered machines are more powerful than people think. 
+                    Let's unlock that power together and give your bike the care it deserves.
+                </p>
+                <a href="schedule.html" class="cta">Schedule Your Service</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Want to book a service or ask a question?</p>
+        <a href="schedule.html" class="cta">Schedule Now / Contact Me</a>
+        <p>&copy; 2025 One Gear Garage. All Chains Bound.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize AOS library for animations
+            AOS.init({
+                duration: 800,
+                once: true,
+                mirror: false,
+            });
+
+            // Initialize Particles.js - Removed per request
+            // Particles.js code removed to eliminate background particles
+            
+            // Mobile Navbar Toggle Logic
+            const navbar = document.querySelector('.navbar');
+            const navMenu = document.getElementById('nav-menu');
+            const logoToggle = document.getElementById('logo-toggle');
+
+            function toggleNav() {
+                navbar.classList.toggle('expanded');
+                
+                // Update aria-expanded attribute
+                const isExpanded = navbar.classList.contains('expanded');
+                logoToggle.setAttribute('aria-expanded', isExpanded);
+            }
+
+            // Toggle menu on logo click for mobile (consistent with your index.html)
+            if (logoToggle) {
+                logoToggle.addEventListener('click', (event) => {
+                    // Only toggle on mobile
+                    if (window.innerWidth <= 768) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        toggleNav();
+                    }
+                });
+            }
+
+            // Close the nav menu if a link is clicked
+            if (navMenu) {
+                navMenu.addEventListener('click', (event) => {
+                    if (event.target.tagName === 'A' && navbar.classList.contains('expanded')) {
+                        toggleNav();
+                    }
+                });
+            }
+
+            // Close nav menu when clicking outside
+            document.addEventListener('click', (event) => {
+                if (navbar && !navbar.contains(event.target) && navbar.classList.contains('expanded')) {
+                    toggleNav();
+                }
+            });
+
+            // Add CSS variables for staggered animation delay for mobile nav
+            const navLinks = document.querySelectorAll('#nav-menu a');
+            navLinks.forEach((link, index) => {
+                link.style.setProperty('--delay-index', `${index * 0.1}s`);
+            });
+
+            // Handle window resize to ensure proper nav state
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768 && navbar.classList.contains('expanded')) {
+                    navbar.classList.remove('expanded');
+                    logoToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Counter animation for stats
+            function animateCounters() {
+                const counters = document.querySelectorAll('.stat-number');
+                
+                counters.forEach(counter => {
+                    const targetText = counter.innerText;
+                    if (targetText === '∞') return; // Skip infinity symbol
+                    
+                    const target = parseInt(targetText.match(/\d+/)?.[0]);
+                    if (!target) return;
+                    
+                    const duration = 2000; // 2 seconds
+                    const increment = target / (duration / 16); // 60fps
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            counter.innerText = targetText;
+                            clearInterval(timer);
+                        } else {
+                            const displayValue = Math.floor(current);
+                            counter.innerText = targetText.replace(/\d+/, displayValue);
+                        }
+                    }, 16);
+                    
+                    // Start animation when element is visible
+                    const observer = new IntersectionObserver((entries) => {
+                        if (entries[0].isIntersecting) {
+                            // Start the timer
+                            observer.disconnect();
+                        }
+                    }, { threshold: 0.5 });
+                    
+                    observer.observe(counter);
+                });
+            }
+
+            // Initialize counter animation
+            animateCounters();
+
+            // Progressive Timeline Animation - RESPONSIVE FOR MOBILE
+            function updateTimelineProgress() {
+                const timeline = document.querySelector('.timeline');
+                const timelineLine = document.getElementById('timeline-line');
+                
+                if (!timeline || !timelineLine) return;
+                
+                const timelineRect = timeline.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                
+                // Calculate progress based on timeline position in viewport
+                const timelineTop = timelineRect.top;
+                const timelineBottom = timelineRect.bottom;
+                const timelineHeight = timelineRect.height;
+                
+                let progress = 0;
+                
+                if (timelineTop <= viewportHeight && timelineBottom >= 0) {
+                    // Timeline is visible in viewport
+                    if (timelineTop <= viewportHeight * 0.5) {
+                        // Start growing the line when timeline reaches middle of screen
+                        const visibleAmount = Math.min(viewportHeight * 0.5 - timelineTop, timelineHeight);
+                        progress = Math.max(0, visibleAmount / (timelineHeight * 0.8));
+                    }
+                }
+                
+                // Cap progress at 1
+                progress = Math.min(1, progress);
+                
+                // Calculate max height based on screen size
+                // Mobile uses 20rem top offset, desktop uses 10rem
+                const isMobile = window.innerWidth <= 768;
+                const topOffset = isMobile ? 320 : 160; // 20rem ≈ 320px, 10rem ≈ 160px
+                const maxHeight = timelineHeight - topOffset;
+                
+                // Update the timeline line height with smooth transition
+                const currentHeight = progress * maxHeight;
+                timelineLine.style.height = `${currentHeight}px`;
+                
+                // Update opacity for better visibility
+                timelineLine.style.opacity = progress > 0 ? 1 : 0;
+            }
+            
+            // Update timeline on scroll
+            window.addEventListener('scroll', updateTimelineProgress);
+            
+            // Initial call to set timeline state
+            updateTimelineProgress();
+        });
+    </script>
+</body>
+</html>

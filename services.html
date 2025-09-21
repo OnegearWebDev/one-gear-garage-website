@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Rituals - One Gear Garage</title>
+
+    <meta name="description" content="Explore the full list of expert bike services and rituals offered at One Gear Garage, including tune-ups, repairs, and deep cleans for BMX, dirt bikes, pit bikes, and more.">
+    <link rel="canonical" href="https://onegeargarage.xyz/services.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=UnifrakturCook&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <style>
+        .brand-name {
+            color: #e63946 !important;
+        }
+
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100%; /* Ensure body stretches to at least viewport height */
+        }
+
+        /* BASE FONTS & COLORS */
+        /* Standardized color palette for the entire site */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #ccc; /* Unified default text color: light gray */
+            background-color: #0a0a0a;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel Decorative', cursive;
+            color: #e63946; /* Unified brand accent color for headings */
+        }
+
+        /* BACKGROUND IMAGE AS <img> */
+        #bgImg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            object-position: center center;
+            z-index: -2;
+        }
+
+        /* On mobile, shift focus to the right side of the image */
+        @media (max-width: 768px) {
+            #bgImg {
+                object-position: right center;
+            }
+        }
+
+        /* SHADING OVERLAY */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.5); /* Semi-transparent dark overlay */
+            z-index: -1;
+        }
+
+        /* NAVBAR */
+        :root {
+            --navbar-height: 8.2rem;
+            --navbar-initial-mobile-height: 6.5rem;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 50px;
+            padding: 0.4rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+            height: var(--navbar-height);
+            overflow: visible;
+            transition: all 0.3s ease;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--navbar-height);
+            background: linear-gradient(
+                rgba(18, 18, 18, 0.95) 20%,
+                rgba(18, 18, 18, 0.35) 60%,
+                transparent
+            );
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .nav-top-row {
+            display: flex;
+            align-items: center;
+            width: auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.9rem;
+            color: #e63946; /* One Gear Garage text color */
+            text-shadow: 0 0 8px #e63946, 0 0 15px #911e25;
+            letter-spacing: 1px;
+            animation: logoGlow 3s ease-in-out infinite;
+            cursor: default;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo-icon {
+            height: 125px;
+            width: auto;
+            transition: transform 0.3s ease;
+            margin: 0;
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            display: inline-block;
+            font-size: 1.9rem;
+            line-height: 1;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% {
+                text-shadow: 0 0 8px #e63946, 0 0 15px #911e25;
+            }
+            50% {
+                text-shadow: 0 0 16px #ff4d5b, 0 0 25px #911e25;
+            }
+        }
+
+        header.navbar nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar nav a {
+            margin-left: 1.5rem;
+            padding: 0.4rem 0.8rem;
+            color: #ccc; /* Unified link color */
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: color 0.3s, background 0.3s, text-shadow 0.3s;
+        }
+
+        .navbar nav a:hover {
+            color: #e63946;
+            text-shadow: 0 0 6px #ff4d5b;
+        }
+
+        .navbar nav a.active {
+            color: #fff;
+            background: rgba(230, 57, 70, 0.25);
+            text-shadow: 0 0 6px #ff4d5b;
+        }
+
+        /* MAIN CONTENT LAYOUT */
+        main {
+            padding-top: var(--navbar-height);
+        }
+
+        /* SECTIONS (general styling for padding, etc.) */
+        .section {
+            padding: 4rem 2rem;
+        }
+
+        /* ENHANCED SERVICES HERO SECTION */
+        .services-hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: transparent;
+            margin-bottom: 2rem;
+        }
+
+        .services-hero h1 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 3.5rem;
+            color: #e63946;
+            text-shadow: 0 0 15px rgba(230, 57, 70, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .services-hero .tagline {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.2rem;
+            color: #aaa;
+            font-style: italic;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* SERVICES INTRO FEATURE SECTION */
+        .services-intro-feature {
+            background: rgba(18, 18, 18, 0.5);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 4rem 2rem;
+            margin: 4rem auto;
+            max-width: 1200px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .services-intro-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .services-intro-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(230, 57, 70, 0.7), 0 0 20px rgba(230, 57, 70, 0.5), 0 0 30px rgba(230, 57, 70, 0.3);
+        }
+
+        .services-intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+        }
+
+        .services-intro-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .services-intro-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+            filter: grayscale(10%) brightness(95%);
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .services-intro-image img:hover {
+            filter: none;
+            transform: scale(1.03);
+        }
+
+        /* BIKE TYPES SPECIALIZATION SECTION */
+        .bike-types-section {
+            background: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            margin: 3rem auto;
+            max-width: 1200px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .bike-types-section h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #e63946;
+            text-shadow: 0 0 10px rgba(230, 57, 70, 0.4);
+        }
+
+        .bike-types-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #ccc;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .bike-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .bike-type-item {
+            background: rgba(230, 57, 70, 0.1);
+            border: 1px solid rgba(230, 57, 70, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .bike-type-item:hover {
+            background: rgba(230, 57, 70, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.2);
+        }
+
+        .bike-type-item h4 {
+            color: #e63946;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Cinzel Decorative', cursive;
+        }
+
+        .bike-type-item p {
+            color: #ccc;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* ENHANCED SERVICES SECTION */
+        .services h2 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #e63946;
+            text-shadow: 0 0 15px rgba(230, 57, 70, 0.3);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #1a1a1a 0%, #151515 100%);
+            border: 1px solid #333;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(230, 57, 70, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.4),
+                0 0 25px rgba(230, 57, 70, 0.2),
+                0 0 0 1px rgba(230, 57, 70, 0.3);
+            border-color: rgba(230, 57, 70, 0.4);
+        }
+
+        .card h3 {
+            color: #e63946;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            font-family: 'Cinzel Decorative', cursive;
+            text-shadow: 0 0 5px rgba(230, 57, 70, 0.2);
+        }
+
+        .card p {
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* CTA BUTTON STYLING */
+        .cta {
+            padding: 1.2rem 2.5rem;
+            border: 2px solid #e63946;
+            color: #e63946;
+            background: transparent;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #e63946, #ff4d5b);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta:hover::before {
+            left: 0;
+        }
+
+        .cta:hover {
+            color: #fff;
+            box-shadow: 0 0 25px rgba(230, 57, 70, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* Services Page specific CTA at the bottom */
+        .services-cta-bottom {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem 2rem;
+            background: rgba(18, 18, 18, 0.3);
+            border-radius: 15px;
+            border-top: 1px solid rgba(230, 57, 70, 0.2);
+        }
+
+        .services-cta-bottom p {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            font-family: 'Cinzel Decorative', cursive;
+            text-shadow: 0 0 8px rgba(230, 57, 70, 0.2);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0a0a0a;
+            padding: 2rem 1rem;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        footer .cta {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.6rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: #e63946;
+            border: 2px solid #e63946;
+            border-radius: 5px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        footer .cta:hover {
+            background: #e63946;
+            color: #fff;
+            text-shadow: none;
+            box-shadow: none;
+        }
+
+        footer .cta:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* === MOBILE STYLES (<= 768px) === */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 95%;
+                top: 1rem;
+                padding: 0;
+                max-height: var(--navbar-initial-mobile-height);
+                overflow: hidden;
+                height: auto;
+                transition: max-height 0.4s ease-out, background 0.4s ease, backdrop-filter 0.4s ease, border-radius 0.4s ease;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                background: rgba(18, 18, 18, 0.6);
+                backdrop-filter: blur(8px);
+            }
+
+            .navbar.expanded {
+                max-height: 500px;
+                border-bottom-left-radius: 40px;
+                border-bottom-right-radius: 40px;
+                background: rgba(18, 18, 18, 0.9);
+            }
+
+            .nav-top-row {
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 0.4rem 1rem;
+                flex-shrink: 0;
+                border-bottom: none;
+            }
+
+            .logo {
+                cursor: pointer;
+                margin: 0;
+                padding: 0;
+                font-size: 1.5rem;
+            }
+
+            .logo-icon {
+                height: 100px;
+                margin: 0;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+                line-height: 1;
+            }
+
+            .hamburger {
+                display: none;
+            }
+            
+            #nav-menu {
+                position: static;
+                flex-grow: 1;
+                width: 100%;
+                padding: 0 1rem 0.6rem 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            }
+
+            .navbar.expanded #nav-menu {
+                visibility: visible;
+                opacity: 1;
+                transition-delay: 0s;
+            }
+
+            #nav-menu a {
+                padding: 0.5rem 0;
+                width: 100%;
+                text-align: center;
+                display: block;
+                margin: 0;
+                max-width: none;
+                align-self: stretch;
+                opacity: 1;
+                transform: translateY(0);
+                animation: none;
+            }
+
+            main {
+                padding-top: calc(var(--navbar-initial-mobile-height) + 1.5rem);
+            }
+
+            .services-hero {
+                height: 50vh;
+                padding: 2rem 1rem;
+            }
+
+            .services-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .services-intro-feature {
+                flex-direction: column;
+                padding: 3rem 1.5rem;
+                margin: 3rem auto;
+                gap: 2rem;
+            }
+
+            .services-intro-text h3 {
+                font-size: 2rem;
+            }
+
+            .services-intro-text p {
+                font-size: 1rem;
+            }
+
+            .bike-types-section {
+                padding: 2.5rem 1.5rem;
+                margin: 2.5rem auto;
+            }
+
+            .bike-types-section h3 {
+                font-size: 1.8rem;
+            }
+
+            .bike-types-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .card {
+                padding: 2rem 1.5rem;
+            }
+
+            .services h2 {
+                font-size: 2rem;
+            }
+
+            .services-cta-bottom {
+                padding: 2rem 1.5rem;
+                margin-top: 3rem;
+            }
+
+            .services-cta-bottom p {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* === DESKTOP-SPECIFIC STYLES (min-width: 769px) === */
+        @media (min-width: 769px) {
+            .navbar {
+                flex-direction: row;
+                max-height: var(--navbar-height);
+                padding: 0.4rem 2rem;
+                border-radius: 50px;
+                background: rgba(18, 18, 18, 0.6);
+                backdrop-filter: blur(8px);
+                height: var(--navbar-height);
+                overflow: visible;
+            }
+            .nav-top-row {
+                width: auto;
+                padding: 0;
+                display: flex;
+                justify-content: flex-start;
+                border-bottom: none;
+            }
+            .hamburger {
+                display: none;
+            }
+            #nav-menu {
+                position: static;
+                visibility: visible !important;
+                opacity: 1 !important;
+                padding: 0 !important;
+                transition: none !important;
+                flex-direction: row;
+                align-items: center;
+            }
+            #nav-menu a {
+                opacity: 1 !important;
+                transform: none !important;
+                animation: none !important;
+                width: auto !important;
+                padding: 0.4rem 0.8rem !important;
+                display: inline-block !important;
+                text-align: left !important;
+                margin: 0 !important;
+            }
+
+            .services-intro-feature {
+                flex-direction: row;
+            }
+        }
+
+        /* Medium screens - adjust service grid */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .service-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <picture>
+        <source srcset="images/milky-way.webp" type="image/webp">
+        <img src="images/milky-way.jpg" id="bgImg" alt="Milky Way Background" aria-hidden="true">
+    </picture>
+    <div class="overlay"></div>
+
+    <header class="navbar">
+        <div class="nav-top-row">
+            <a href="index.html" class="logo" id="logo-toggle" aria-haspopup="true" aria-expanded="false">
+                <picture>
+                    <source srcset="images/logo.webp" type="image/webp">
+                    <img src="images/logo.png" alt="One Gear Garage Logo" class="logo-icon">
+                </picture>
+                <span class="logo-text">One Gear Garage</span>
+            </a>
+        </div> 
+        <nav id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about-full.html">About</a>
+            <a href="services.html" class="active">Services | Rituals</a>
+            <a href="schedule.html">Schedule | Contact</a>
+            <a href="gallery.html">Gallery</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section for Services -->
+        <section class="services-hero">
+            <h1 data-aos="fade-up">Our Sacred Rituals</h1>
+            <p class="tagline" data-aos="fade-up" data-aos-delay="100">From a basic cleanse to a complete reawakening, each service is performed with precision and passion.</p>
+        </section>
+
+        <!-- Services Intro Feature Section -->
+        <section class="services-intro-feature" data-aos="fade-up" data-aos-delay="200">
+            <div class="services-intro-text">
+                <h3>Unleash Your Ride's True Potential</h3>
+                <p>At <span class="brand-name">One Gear Garage</span>, we believe every bike deserves to perform at its peak. Our comprehensive rituals go beyond simple repairs, offering meticulous care that reawakens the soul of your BMX, dirt bike, pit bike, and more.</p>
+                <p>Whether you're hitting the streets, tearing up the dirt, conquering trails, or cruising with friends, our expert services ensure your bike is always reliable, safe, and ready for whatever you throw at it.</p>
+            </div>
+            <div class="services-intro-image">
+                <!-- You can add an image here if you have one -->
+                <div style="width: 100%; height: 300px; background: rgba(230, 57, 70, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #e63946; font-style: italic;">
+                    [Bike Service Image Placeholder]
+                </div>
+            </div>
+        </section>
+
+        <!-- Bike Types Specialization Section -->
+        <section class="bike-types-section" data-aos="fade-up" data-aos-delay="300">
+            <h3>We Service All Types of Bikes</h3>
+            <p>From pedal-powered to motor-driven, we bring the same level of expertise and passion to every ride that comes through our garage.</p>
+            <div class="bike-types-grid">
+                <div class="bike-type-item" data-aos="fade-up" data-aos-delay="400">
+                    <h4>BMX Bikes</h4>
+                    <p>Street, park, dirt, freestyle - we know BMX inside and out</p>
+                </div>
+                <div class="bike-type-item" data-aos="fade-up" data-aos-delay="500">
+                    <h4>Mountain Bikes</h4>
+                    <p>Trail, enduro, cross-country - built for adventure</p>
+                </div>
+                <div class="bike-type-item" data-aos="fade-up" data-aos-delay="600">
+                    <h4>Road Bikes</h4>
+                    <p>Speed, precision, and performance on the pavement</p>
+                </div>
+                <div class="bike-type-item" data-aos="fade-up" data-aos-delay="700">
+                    <h4>Dirt Bikes</h4>
+                    <p>Basic maintenance to keep your dirt machine running strong</p>
+                </div>
+                <div class="bike-type-item" data-aos="fade-up" data-aos-delay="800">
+                    <h4>Pit Bikes</h4>
+                    <p>Compact power - essential maintenance for maximum fun</p>
+                </div>
+                <div class="bike-type-item" data-aos="fade-up" data-aos-delay="900">
+                    <h4>Hybrid & More</h4>
+                    <p>Commuters, cruisers, and everything in between</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Services Section -->
+        <section id="services" class="services section">
+            <h2 data-aos="fade-up">Choose Your Ritual</h2>
+
+            <div class="service-grid">
+                <div class="card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Basic Bike Wash</h3>
+                    <p>Cleansing your steed. Removes surface dirt and grime to keep your bike sparkling and ready for the next adventure. Perfect for all bike types.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Deep Clean</h3>
+                    <p>From crank to crown. A thorough cleaning of all components, ensuring smooth operation and longevity for your trusted ride.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="500">
+                    <h3>Chain & Lube</h3>
+                    <p>Oiled and bound. Expert cleaning and lubrication of your chain and drivetrain for optimal performance and silent operation.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="600">
+                    <h3>Brake Tuning</h3>
+                    <p>Stop the demons. Precise adjustment and optimization of your brakes for reliable stopping power when you need it most.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="700">
+                    <h3>Flat Repair</h3>
+                    <p>Revive what's lost. Quick and efficient repair or replacement of inner tubes to get you back riding fast and confident.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="800">
+                    <h3>Complete Tune-Up</h3>
+                    <p>Reawaken the beast. A full inspection, adjustment, and lubrication of your entire bike, ensuring peak performance and reliability.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="900">
+                    <h3>Dirt Bike Basic Maintenance</h3>
+                    <p>Keep your dirt machine running strong. Oil changes, air filter cleaning, chain maintenance, and basic inspections to ensure your dirt bike is trail-ready.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="1000">
+                    <h3>Pit Bike Maintenance</h3>
+                    <p>Compact power, maximum care. Essential maintenance for pit bikes including engine basics, chain and sprocket care, and safety checks.</p>
+                </div>
+            </div>
+            
+            <div class="services-cta-bottom" data-aos="fade-up" data-aos-delay="1100">
+                <p>Ready to give your bike the ritual it deserves?</p>
+                <a href="schedule.html" class="cta">Book Your Ritual Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Questions? Want to book a service?</p>
+        <a href="schedule.html" class="cta">Schedule Now / Contact Me</a>
+        <p>&copy; 2025 One Gear Garage. All Chains Bound.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile navigation toggle (if you have hamburger menu functionality)
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoToggle = document.getElementById('logo-toggle');
+            const navbar = document.querySelector('.navbar');
+            
+            if (logoToggle) {
+                logoToggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        navbar.classList.toggle('expanded');
+                        
+                        const isExpanded = navbar.classList.contains('expanded');
+                        logoToggle.setAttribute('aria-expanded', isExpanded);
+                        
+                        if (isExpanded) {
+                            const navLinks = document.querySelectorAll('#nav-menu a');
+                            navLinks.forEach((link, index) => {
+                                link.style.setProperty('--delay-index', `${index * 0.1}s`);
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

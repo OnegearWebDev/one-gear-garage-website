@@ -1,0 +1,22 @@
+/* aos-custom.css - Optimized for fade-up only */
+
+[data-aos^=fade][data-aos^=fade].aos-animate {
+  opacity: 1;
+  transform: translateZ(0);
+}
+
+[data-aos][data-aos].aos-animate {
+  pointer-events: auto;
+}
+
+[data-aos^=fade][data-aos^=fade] {
+  opacity: 0;
+}
+
+[data-aos=fade-up] {
+  transform: translate3d(0, 100px, 0);
+}
+
+[data-aos=fade-up].aos-animate {
+  transform: translate3d(0, 0, 0);
+}
